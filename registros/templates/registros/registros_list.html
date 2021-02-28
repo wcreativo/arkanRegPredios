@@ -1,0 +1,40 @@
+{% extends "core/base.html" %}
+{% block title %}Registros{% endblock %}
+{% load bootstrap %}
+
+{% block content %}
+<div>
+<form  class="consulta_form" method="GET">
+{{ filter.form|bootstrap }}
+<button class="btn btn-info" type="submit">Buscar</button>
+</form>
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nom_Predio</th>
+                    <th>Matr_Inmobiliaria</th>
+                    <th>Tipo</th>
+                    <th>Ced_Catastral</th>
+                    <th>Dir_Predio</th>
+                    <th>Nom_Prop</th>
+                    <th>Ced_Prop</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for registro in filter.qs %}
+                <tr>
+                    <td>{{ registro.predio.nombre_Predio }}</td>
+                    <td>{{ registro.predio.num_Matr_Inmob }}</td>
+                    <td>{{ registro.predio.Tipo }}</td>
+                    <td>{{ registro.predio.ced_Catastral }}</td>
+                    <td>{{ registro.predio.dir_Predio }}</td>
+                    <td>{{ registro.propietarios.nom_Prop }}</td>
+                    <td>{{ registro.propietarios.ced_Prop }}</td>
+                
+                </tr>
+            {% endfor %}
+            </tbody>
+      </table>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "core/base.html" %}
+{% block content %}
+
+    <form method="post">{% csrf_token %}
+        
+        <table class="table" id="table_add">
+        
+        {{ form.as_table }}        
+        
+        </table>
+    
+        <br>
+        
+        <button id="boton_registro" value="Agregar Predio" class="btn btn-info" type="submit">Crear Registro</button>
+</form>
+
+ 
+{% endblock %}

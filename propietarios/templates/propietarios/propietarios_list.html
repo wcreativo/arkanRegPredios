@@ -1,0 +1,32 @@
+{% extends "core/base.html" %}
+{% block title %}Propietarios{% endblock %}
+{% load bootstrap %}
+
+{% block content %}
+<div>
+<form  class="consulta_form" method="GET">
+{{ filter.form|bootstrap }}
+<button class="btn btn-info" type="submit">Buscar</button>
+</form>
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nom_Prop</th>
+                    <th>Ced_Prop</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for propietario in filter.qs %}
+                <tr>
+                    <td>{{ propietario.nom_Prop }}</td>
+                    <td>{{ propietario.ced_Prop }}</td>
+                    <td><a href="{% url 'propietarios:actualizar' propietario.id %}" class="btn btn-success btn-sm">Editar</a></td>
+                
+                </tr>
+            {% endfor %}
+            </tbody>
+      </table>
+</div>
+{% endblock %}

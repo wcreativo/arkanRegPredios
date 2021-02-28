@@ -1,0 +1,37 @@
+{% extends "core/base.html" %}
+{% load bootstrap %}
+
+{% block content %}
+<div>
+<form  class="consulta_form" method="GET">
+{{ filter.form|bootstrap }}
+<button class="btn btn-info" type="submit">Buscar</button>
+</form>
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nom_Predio</th>
+                    <th>Matr_Inmobiliaria</th>
+                    <th>Tipo</th>
+                    <th>Ced_Catastral</th>
+                    <th>Dir_Predio</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for predio in filter.qs %}
+                <tr>
+                    <td>{{ predio.nombre_Predio }}</td>
+                    <td>{{ predio.num_Matr_Inmob }}</td>
+                    <td>{{ predio.Tipo }}</td>
+                    <td>{{ predio.ced_Catastral }}</td>
+                    <td>{{ predio.dir_Predio }}</td>
+                    <td><a href="{% url 'predios:actualizar' predio.id %}" class="btn btn-success btn-sm">Editar</a></td>
+                
+                </tr>
+            {% endfor %}
+            </tbody>
+      </table>
+</div>
+{% endblock %}
